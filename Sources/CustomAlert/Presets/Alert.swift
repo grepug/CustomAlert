@@ -32,7 +32,7 @@ struct AlertModifier: ViewModifier {
 }
 
 public extension View {
-    func alert(isPresented: Binding<Bool>, title: LocalizedStringKey, message: LocalizedStringKey? = nil, actions: [AlertAction] = [.ok], handleAction: ((AlertAction) -> Void)? = nil) -> some View {
+    func alert(isPresented: Binding<Bool>, title: LocalizedStringKey, message: LocalizedStringKey? = nil, actions: [AlertAction] = [.ok], handleAction: ((AlertAction) async -> Void)? = nil) -> some View {
         modifier(
             AlertModifier(isPresented: isPresented, 
                           title: title,

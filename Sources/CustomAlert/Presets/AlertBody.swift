@@ -25,10 +25,10 @@ struct AlertBody: View {
                 Text(message)
             }
             
-            ViewThatFits {
+            VStack {
                 ForEach(actions) { item in
                     if let handleAction {
-                        AsyncButton {
+                        AsyncButton(isPresented: $isPresented) {
                             await handleAction(item)
                         } label: {
                             actionButton(item: item)
@@ -43,6 +43,10 @@ struct AlertBody: View {
                 }
             }
         }
+        .padding()
+        .frame(minWidth: 300, minHeight: 180)
+        .background(.ultraThickMaterial)
+        .clipShape(.rect(cornerRadius: 24))
     }
     
     func actionButton(item: AlertAction) -> some View {
@@ -51,6 +55,7 @@ struct AlertBody: View {
 }
 
 struct AsyncButton<Label: View>: View {
+    @Binding var isPresented: Bool
     var action: () async -> Void
     @ViewBuilder var label: () -> Label
     
@@ -62,6 +67,8 @@ struct AsyncButton<Label: View>: View {
                 isLoading = true
                 await action()
                 isLoading = false
+                try? await Task.sleep(for: .seconds(0.3))
+                isPresented = false
             }
         } label: {
             label()

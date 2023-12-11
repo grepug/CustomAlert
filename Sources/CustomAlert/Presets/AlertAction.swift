@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct AlertAction: Identifiable {
+public struct AlertAction: Identifiable, Equatable {
     var text: LocalizedStringKey
     
     public var id: String
