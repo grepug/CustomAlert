@@ -13,8 +13,6 @@ public protocol AlertDelegate: AnyObject {
     var tag: Int { get set }
     var alerts: [UIView] { get set }
     
-    init()
-    
     func removeFirstAlert()
     func removeAlert(withTag tag: Int)
 }
@@ -28,9 +26,7 @@ public extension AlertDelegate {
         
         self.overlayWindow = window
     }
-}
-
-extension AlertDelegate {
+    
     func removeFirstAlert() {
         alerts.removeFirst()
     }
@@ -38,7 +34,9 @@ extension AlertDelegate {
     func removeAlert(withTag tag: Int) {
         alerts.removeAll(where: { $0.tag == tag })
     }
-    
+}
+
+extension AlertDelegate {
     func alert<Content: View>(config: Binding<AlertConfiguration>, @ViewBuilder content: @escaping () -> Content, viewTag: @escaping (Int) -> ()) {
         guard let alertWindow = overlayWindow else { return }
         

@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  AlertModifier.swift
+//
 //
 //  Created by Kai Shao on 2023/12/11.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Alert Handling View Modifier
-struct AlertModifier<AlertContent: View>: ViewModifier {
+struct CustomAlertModifier<AlertContent: View>: ViewModifier {
     @Binding var config: AlertConfiguration
     @Environment(\.alertDelegate) var alertDelegate
     @ViewBuilder var alertContent: () -> AlertContent

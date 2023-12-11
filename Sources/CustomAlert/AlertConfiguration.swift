@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  AlertConfiguration.swift
+//
 //
 //  Created by Kai Shao on 2023/12/11.
 //
@@ -12,7 +12,7 @@ public struct AlertConfiguration {
     var disableOutsideTap: Bool = true
     var transitionType: TransitionType = .slide
     var slideEdge: Edge = .bottom
-    var show: Bool = false
+    public var show: Bool = false
     var showView: Bool = false
     
     public init(enableBackgroundBlur: Bool = true, disableOutsideTap: Bool = true, transitionType: TransitionType = .slide, slideEdge: Edge = .bottom) {

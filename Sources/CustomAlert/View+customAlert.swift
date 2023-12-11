@@ -9,10 +9,10 @@ import SwiftUI
 
 public extension View {
     @ViewBuilder
-    func alert<Content: View>(alertConfig: Binding<AlertConfiguration>, @ViewBuilder content: @escaping () -> Content) -> some View {
-            modifier(
-                AlertModifier(config: alertConfig, alertContent: content)
-            )
+    func customAlert<Content: View>(config: Binding<AlertConfiguration>, @ViewBuilder content: @escaping () -> Content) -> some View {
+        modifier(
+            CustomAlertModifier(config: config, alertContent: content)
+        )
     }
 }
 
